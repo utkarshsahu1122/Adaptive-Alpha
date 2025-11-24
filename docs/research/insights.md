@@ -21,3 +21,17 @@
 - This strategy becomes Strategy #1 in Adaptive Alpha and later will:
   - Serve as a baseline against more complex ML/RL-driven strategies.
   - Be extended to pair-spread z-scores and portfolio-level signals.
+
+## Day 4 – AAPL/MSFT Pairs Z-score Mean Reversion Strategy
+
+- Constructed log spread between AAPL and MSFT and standardized it via rolling z-score.
+- Trading rule: 
+  - If spread z > +1: short AAPL, long MSFT.
+  - If spread z < -1: long AAPL, short MSFT.
+- Implemented pair strategy module in `src/python/strategies/pairs_zscore_strategy.py`.
+- Measured equity curve and Sharpe after transaction costs.
+- Key observations:
+  - [“Strategy performs well in range-bound periods{stationary behaviour}, degrades during trending regimes.”]
+- This becomes Strategy #2 for Adaptive Alpha and will later:
+  - Serve as a structured baseline for more advanced cointegration + ML-based spread models.
+  - Be integrated into portfolio/risk layer and possibly used as one of multiple signal components.
