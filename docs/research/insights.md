@@ -35,3 +35,14 @@
 - This becomes Strategy #2 for Adaptive Alpha and will later:
   - Serve as a structured baseline for more advanced cointegration + ML-based spread models.
   - Be integrated into portfolio/risk layer and possibly used as one of multiple signal components.
+
+## Day 5 – Time Series Basics (Stationarity & AR(1))
+
+- Explored time series behavior of AAPL returns and AAPL/MSFT spread.
+- Visual checks and ACF plots suggested returns are near white noise, while spread/differences show some temporal structure.
+- Fitted an AR(1) model to AAPL returns using statsmodels:
+  - Recorded phi (lag-1 coefficient) and analyzed its implication for predictability.
+- Implemented a reusable AR1Model class in `src/python/models/time_series_models.py`.
+- Next steps:
+  - Use AR(1) and related models to build simple forecasting features for strategies.
+  - Later replace AR(1) with more powerful models (e.g., LSTM, DeepLOB).
