@@ -46,3 +46,15 @@
 - Next steps:
   - Use AR(1) and related models to build simple forecasting features for strategies.
   - Later replace AR(1) with more powerful models (e.g., LSTM, DeepLOB).
+
+## Day 6 – Backtesting Engine
+
+- Designed a reusable backtester for single-asset strategies.
+- Supports:
+  - execution timing
+  - transaction costs
+  - P&L and Sharpe calculation
+- Unified Strategy #1 and Strategy #2 into one evaluation interface.
+- This structure mimics professional quant architecture:
+  strategy code ≠ execution engine.
+- Next: extend to multi-asset & risk layer.

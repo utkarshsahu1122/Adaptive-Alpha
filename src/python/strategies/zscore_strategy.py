@@ -11,11 +11,21 @@ def rolling_zscore(series: pd.Series, window: int = 20) -> pd.Series:
 
 def generate_zscore_signals(series: pd.Series,
                             window: int = 20,
-                            entry_z: float = 1.0) -> pd.Series:
+                            entry_z: float = 1.0,
+                            max_size: float = 1.0) -> pd.Series:
     z = rolling_zscore(series, window=window)
-    signals = pd.Series(0, index=z.index)
-    signals[z < -entry_z] = 1    # long
-    signals[z > entry_z] = -1    # short
+    signals = pd.Series(0.0, index=z.index)
+
+    # base direction
+    signals[z < -entry_z] = +1.0
+    signals[z >  entry_z] = -1.0
+
+    # scale by |z| so bigger deviations → bigger size (capped by max_size)
+    scale = (z.abs() / z.abs().max()).clip(0, 1) * max_size
+    signals = signals * scale
+    # Now our positions are in [-max_size, +max_size] instead of just -1/0/+1.
+    # We can adjust max_size to control risk/exposure.
+    
     return signals
 
 def backtest_zscore_strategy(returns: pd.Series,
