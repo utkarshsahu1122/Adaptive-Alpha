@@ -58,3 +58,15 @@
 - This structure mimics professional quant architecture:
   strategy code ≠ execution engine.
 - Next: extend to multi-asset & risk layer.
+
+## Day 7 – Portfolio Risk Layer
+
+- Implemented volatility-based portfolio.
+- Calculated portfolio returns, volatility, and Sharpe ratio.
+- Built risk module in `src/python/risk/portfolio.py`.
+- Introduced risk-parity allocation.
+- First step towards:
+  - multi-asset allocation
+  - portfolio-level evaluation
+  - RL risk constraints
+- Risk management layer now available for strategies.
